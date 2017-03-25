@@ -23,12 +23,12 @@ def build_page(textarea_content):
     rotation_input = "<input type='number' value='0' name='rotation'/>"
 
     message_label = "<label>Type a message:</label>"
-    textarea = "<textarea name='message'>" + textarea_content + "</textarea>"
+    textarea = "<textarea name='message' rows='5' cols='35'>" + textarea_content + "</textarea>"
 
     submit = "<input type='submit'/>"
-    form = ("<form method='post'>" + rot_label + rotation_input + "<br>" +
-        message_label + textarea + "<br>" + submit + "</form>")
-    header = "<h2>Web Caesar</h2>"
+    form = ("<form method='post'>" + rot_label + "<br>" + rotation_input + "<br><br>" +
+        message_label + "<br>" + textarea + "<br>" + submit + "</form>")
+    header = "<h1>Web Caesar</h1>"
 
     return header + form
 
