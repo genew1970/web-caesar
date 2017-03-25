@@ -20,17 +20,56 @@ import cgi
 
 def build_page(textarea_content):
     rot_label = "<label>Rotate by:</label>"
-    rotation_input = "<input type='number' value='0' name='rotation'/>"
+    rotation_input = "<input class='user_input' type='number' value='0' name='rotation'/>"
 
     message_label = "<label>Type a message:</label>"
-    textarea = "<textarea name='message' rows='5' cols='35'>" + textarea_content + "</textarea>"
+    textarea = "<textarea class='user_input' name='message'>" + textarea_content + "</textarea>"
 
-    submit = "<input type='submit'/>"
+    submit = "<input class='button' type='submit'/>"
     form = ("<form method='post'>" + rot_label + "<br>" + rotation_input + "<br><br>" +
         message_label + "<br>" + textarea + "<br>" + submit + "</form>")
-    header = "<h1>Web Caesar</h1>"
+    header = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>FlickList</title>
+        <style>
 
-    return header + form
+            h1 {
+                font-size: 48px;
+                color: blue;
+                text-shadow: 1px 1px 5px red;
+            }
+
+            label {
+                font-size: 36px;
+                color: crimson;
+                text-shadow: 1px 1px 5px black;
+            }
+
+            .button {
+                font-size: 15px;
+                color: white;
+                background-color: blue;
+            }
+
+            .user_input {
+                font-size: 24px;
+                color: blue;
+                text-shadow: 1px 1px 3px crimson;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Web Caesar</h1>
+    """
+    footer = """
+    </body>
+    </html>
+    """
+
+    return header + form + footer
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
