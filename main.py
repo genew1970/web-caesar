@@ -19,15 +19,21 @@ import caesar
 import cgi
 
 def build_page(textarea_content):
+    # input to allow the user to input the number to rotate by.
+    # the value is initially set to zero
     rot_label = "<label>Rotate by:</label>"
     rotation_input = "<input class='user_input' type='number' value='0' name='rotation'/>"
 
+    # text area holds the message to be displayed with a label messad
     message_label = "<label>Type a message:</label>"
     textarea = "<textarea class='user_input' name='message'>" + textarea_content + "</textarea>"
 
+    # button to submit the form and add content to send to the html to be returned
     submit = "<input class='button' type='submit'/>"
     form = ("<form method='post'>" + rot_label + "<br>" + rotation_input + "<br><br>" +
         message_label + "<br>" + textarea + "<br>" + submit + "</form>")
+
+    # adds html style content, header and title to the web app
     header = """
     <!DOCTYPE html>
     <html>
@@ -69,13 +75,17 @@ def build_page(textarea_content):
     </html>
     """
 
+    # returns the header, form and footer
     return header + form + footer
 
 class MainHandler(webapp2.RequestHandler):
+    # get method to initialize page
     def get(self):
         content = build_page("")
         self.response.write(content)
 
+    # post method once the form has been submitted.  escape is used to keep users
+    # from entering html code to change the format of the page
     def post(self):
         message = self.request.get("message")
         rotation = int(self.request.get("rotation"))
